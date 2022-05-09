@@ -20,24 +20,38 @@ public class ArrayList<T> implements List<T> {
 	 * @param initialCapacity
 	 */
 	public ArrayList(int initialCapacity) {
-		T data[] = (T[]) new Object[initialCapacity];
+		data = (T[]) new Object[initialCapacity];
 		size = 0;
 	}
 
 	@Override
 	public void add(T item, int index) {
-		if(data.length <= size)//if the array is full
+		if(index >= 0 && index <= size)
 		{
-			//TODO need to increase array capacity here
+			if(data.length <= size)//if the array is full
+				increaseCapacity();
+			for(int i = size; i > index; i--)
+				data[i] = data[i-1];
+			data[index] = item;
+			size++;
 		}
-		//TODO
-		
-		size++;
+		else
+			System.out.println("invalid index");
+	}
+	
+	/**
+	 * Doubles the capacity of the 'data' array
+	 */
+	private void increaseCapacity() {
+		T newData[] = (T[]) new Object[data.length * 2];
+		for(int i = 0; i < size; i++)
+			newData[i] = data[i];
+		data = newData;
 	}
 
 	@Override
 	public void clear() {
-		T data[] = (T[]) new Object[DEFAULT_INITIAL_CAPACITY];
+		data = (T[]) new Object[DEFAULT_INITIAL_CAPACITY];
 		size = 0;
 	}
 
@@ -76,5 +90,17 @@ public class ArrayList<T> implements List<T> {
 	@Override
 	public int size() {
 		return size;
+	}
+	
+	public String toString() {
+		if(isEmpty())
+			return "";
+		String answer = data[0].toString();
+		//if(size > 1)
+		//{
+			for(int i = 1; i < size; i++)
+			answer = answer + ", " + data[i].toString();
+		//}
+		return answer;
 	}
 }
