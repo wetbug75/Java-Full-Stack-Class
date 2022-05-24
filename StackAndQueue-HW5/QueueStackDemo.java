@@ -4,7 +4,8 @@
 class QueueStackDemo {
 
     public static void main(String[] args) {
-        /*Queue < Integer > queue = new Queue < Integer > (5);
+    	
+        Queue < Integer > queue = new Queue < Integer > (6);
         //add 2 4 6 8 10 at the end
         queue.add(2);
         queue.add(4);
@@ -21,7 +22,7 @@ class QueueStackDemo {
         System.out.println("Queue:");
         while (!queue.isEmpty()) {
             System.out.print(queue.remove() + " ");
-        }*/
+        }
 
         Stack < Integer > stack = new Stack < Integer > (3);
 
@@ -33,6 +34,7 @@ class QueueStackDemo {
 
         stack.push(3); // inserting 3 in the stack
 
+        System.out.println();
         System.out.println("The top element is " + stack.peek());
         System.out.println("The stack size is " + stack.currentSize());
 

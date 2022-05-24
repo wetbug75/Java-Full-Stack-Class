@@ -1,14 +1,13 @@
 /**
- * @author andre
- *
+ * Class imitating the "stack" data structure (first in last out)
+ * @author Andrew Krause
+ * @version 1.1
+ * 
  */
 public class Stack<V>
 {
-	private static final int DEFAULT_INITIAL_CAPACITY = 20;//see constructor
-	
 	private V[] stack; //stores the items added to the stack
-	private int stackTopIndex;
-	private int maxSize;
+	private int stackTopIndex; //keeps track of the top of the stack
 	
     /**
         Constructor to initialize the stack with a maximum capacity of maxSize.
@@ -17,13 +16,7 @@ public class Stack<V>
     public Stack(int maxSize)
     {
     	stack = (V[]) new Object[maxSize];
-    	this.maxSize = maxSize;
     	stackTopIndex = 0;
-    }
-    
-    public Stack()
-    {
-    	this(DEFAULT_INITIAL_CAPACITY);//is this better practices than "this(20);" ?
     }
  
     /**
@@ -31,7 +24,7 @@ public class Stack<V>
     */
     public void push(V element)
     {
-    	if(stackTopIndex >= maxSize)
+    	if(stackTopIndex >= maxCapacity())
     		throw new IndexOutOfBoundsException();
     	else
     	{
@@ -82,13 +75,13 @@ public class Stack<V>
     */
     public boolean isFull()
     {
-    	return stackTopIndex == maxSize;
+    	return stackTopIndex == maxCapacity();
     }
     
     
     public int maxCapacity()
     {
-    	return maxSize;
+    	return stack.length;
     }
     
 }
