@@ -5,11 +5,13 @@ import { Component } from '@angular/core';
 })
 
 export class PageAComponent {
-	someItem: string;
+	someItem!: string;
+	someItem2!: string;
 	
 	constructor() {
-		if (sessionStorage.getItem("autosave")) {
+		if (sessionStorage.getItem("autosave") && sessionStorage.getItem("autosave2")) {
 			this.someItem = sessionStorage.getItem("autosave");
+			this.someItem2 = sessionStorage.getItem("autosave2");
 		}
 	}
 }
