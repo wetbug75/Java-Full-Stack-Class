@@ -1,0 +1,7 @@
+input, div {
+    margin-top: 10px;
+}
+
+div {
+    border: 1px solid black;
+}

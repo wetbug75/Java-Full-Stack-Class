@@ -1,0 +1,31 @@
+<h1>
+  Welcome to {{title}}!
+  </h1>
+  <input type="submit" value="mouse enter button" (mouseenter)="myMouseEnter()"><br/>
+  <input type="submit" value="mouse leave button" (mouseleave)="myMouseLeft()"><br/>
+  <!-- <div ng-mouseleave="count = count + 1" ng-init="count=0" (mouseleave)="myMouseLeft" style="background-color: green; height: 200px; width: 800px;">Mouse over me!(and mouse away from me...)</div> -->
+
+  <input type="text" (keydown)="myKeyDown($event)"><br/>
+  <input type="text" (keyup)="myKeyUp($event)"><br/>
+
+  <input type="text" (focus)="myFocusEvent('gainedFocus')" (blur)="myFocusEvent('lostFocus')"><br/>
+
+  <span>Cut from here: </span>
+  <input type='text' (cut)="cutEvent(cutInput.value)" #cutInput><br/>
+  <span>Copy from here: </span>
+  <input type='text' (copy)="copyEvent(copyInput.value)" #copyInput><br/>
+  <span>Paste in here: </span>
+  <input type='text'  (paste)="pasteContent()">
+
+  <div (mousedown)="myMouseHandler($event, 'mouse down')"
+    (mouseup)="myMouseHandler($event, 'mouse up')">
+    This area has<br />
+    mouse-down<br />
+    and<br />
+    mouse-up<br />
+    enabled.
+  </div>
+
+  <p>Highlight me!</p>
+  <p [myHighlight]="'violet'">Highlight me too!</p>
+  <p [myHighlight]="'green'">Third Highlight me too!</p>
