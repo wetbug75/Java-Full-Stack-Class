@@ -9,7 +9,7 @@ public class HashTableEntry<K,V> implements Entry<K, V> {
 
 	private K key;
 	private V value;
-	private boolean isAvailable;
+	private boolean isAvailable; //is true when an entry used to be there, but was deleted
 	
 	/**
 	 * 
@@ -25,7 +25,7 @@ public class HashTableEntry<K,V> implements Entry<K, V> {
 	public HashTableEntry() {
 		this.key = null;
 		this.value = null;
-		isAvailable = true;
+		isAvailable = false;
 	}
 	
 	public boolean isAvailable(){
@@ -48,24 +48,24 @@ public class HashTableEntry<K,V> implements Entry<K, V> {
 
 	@Override
 	public V setValue(V value) {
-		this.value = value;//needs to return undefined sometimes!
-		return value;
+		V tempV = this.value;
+		this.value = value;
+		return tempV;
 	}
 	
 	@Override
 	public int hashCode(){
 		if(key == null | value == null)
 			return 0;
-		
-		//TODO
-		
-		return 0;
-		//should key = hashCode()?
+		return getKey().hashCode() ^ getValue().hashCode(); //^ is XOR
 	}
 	
 	@Override
 	public boolean equals(Object o){
-		//return (value==null ? o==null : value.equals(o));//might need null check
-		return value.equals(o);
+		if(!(o instanceof HashTableEntry))
+			return false;
+		HashTableEntry<K,V> object = (HashTableEntry<K,V>) o;
+		return (getKey()==null ? object.getKey()==null : getKey().equals(object.getKey()))  &&
+			   (getValue()==null ? object.getValue()==null : getValue().equals(object.getValue()));
 	}
 }
